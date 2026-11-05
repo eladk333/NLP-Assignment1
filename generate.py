@@ -49,6 +49,13 @@ class PCFG(object):
 
 if __name__ == '__main__':
 
-    import sys
-    pcfg = PCFG.from_file(sys.argv[1])
-    print(pcfg.random_sent())
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Generate random sentences from a PCFG.")
+    parser.add_argument("grammar", help="path to the grammar file")
+    parser.add_argument("-n", type=int, default=1, help="number of sentences to generate (default: 1)")
+    args = parser.parse_args()
+
+    pcfg = PCFG.from_file(args.grammar)
+    for _ in range(args.n):
+        print(pcfg.random_sent())
