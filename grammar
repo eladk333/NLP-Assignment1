@@ -34,10 +34,12 @@
 
 1	S	NP VP
 1	VP	Verb NP
-1	NP	Det Noun
+4	NP	Det Noun 
+# A.1 Q3: The other rule NP -> NP PP creates two new NP. Because before both rules were equall wegihts we got very long sentences because of the recursive call. Now we changed the second rule to be with bigger weight so the recursive expantions ends faster. 
 1	NP	NP PP
 1	PP	Prep NP
-1	Noun	Adj Noun
+3	Noun	Adj Noun
+# A.1 Q3: Now this Noun rule can compete with the other 5 Noun rules so we can get sometimes an adjective chains but it will end relative fast because we don't it going recursive like the NP problem had. 
 
 # Vocabulary.  Your program can see that "ate" is a terminal
 # symbol because there exists no rule for rewriting it.
