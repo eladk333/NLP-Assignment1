@@ -19,9 +19,9 @@
 
 # Rules for creating full sentences.
 
-1	ROOT	S .
+7	ROOT	S .
 1	ROOT	S !
-1	ROOT	is it true that S ?     # mixing terminals and nonterminals is ok.
+2	ROOT	is it true that S ?     # mixing terminals and nonterminals is ok.
 
 # The basic grammar rules.  Here's what the abbreviations stand for:
 #    S  = sentence
@@ -47,10 +47,10 @@
 # terminals, like "chief of staff") is called a "preterminal."  Notice 
 # that a preterminal is a special kind of nonterminal.
 
-1	Verb	ate
-1	Verb	wanted
-1	Verb	kissed
-1	Verb	understood
+3	Verb	ate
+3	Verb	wanted
+2	Verb	kissed
+2	Verb	understood
 1	Verb	pickled
 
 1	Det	the
@@ -63,9 +63,9 @@
 1	Noun	chief of staff
 1	Noun	floor
 
-1	Adj	fine
-1	Adj	delicious
-1	Adj	perplexed
+3	Adj	fine
+2	Adj	delicious
+2	Adj	perplexed
 1	Adj	pickled
 
 1	Prep	with

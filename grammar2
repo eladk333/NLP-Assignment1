@@ -1,0 +1,87 @@
+# Symbols in the grammar are case-sensitive.
+# 
+# This grammar uses a convention that
+#    - terminals are lowercase          (president)
+#    - preterminals are capitalized     (Noun)
+#    - other nonterminals are all-caps  (NP)
+# 
+# This convention just makes grammars more readable to humans.  Thus:
+#
+#    - When *you* are writing grammars, you should 
+#      follow this convention unless you have a good reason not to.  
+#
+#    - But the  *program* should still work with grammars that don't
+#      follow this convention.  So how can the program reliably tell
+#      the difference between terminal and nonterminal symbols?  If
+#      there is at least one rule for rewriting a symbol, then that
+#      symbol is a nonterminal and should be rewritten.
+#######################
+
+# Rules for creating full sentences.
+
+# A.1 Q4: Most real sentences are normal so "." get's the highest 7/10.
+# Sentemces tjat ends with question marks are more common than exclamation marks so we give it 2 and 1 weights accordingly. 
+7	ROOT	S .
+1	ROOT	S !
+2	ROOT	is it true that S ?     # mixing terminals and nonterminals is ok.
+
+# The basic grammar rules.  Here's what the abbreviations stand for:
+#    S  = sentence
+#    NP = noun phrase
+#    VP = verb phrase
+#    PP = prepositional phrase
+#    Det = determiner (sometimes called "article")
+#    Prep = preposition
+#    Adj = adjective
+
+1	S	NP VP
+1	VP	Verb NP
+4	NP	Det Noun 
+# A.1 Q3: The other rule NP -> NP PP creates two new NP. Because before both rules were equal wegihts we got very long sentences because of the recursive call. Now we raied NP -> Det Noun to 4 so the recursive expantions ends faster. 
+1	NP	NP PP
+1 NP PropN
+1 NP NP CC NP
+1	PP	Prep NP
+3	Noun	Adj Noun
+# A.1 Q3: Now this Noun rule can compete with the other 5 Noun rules so we can get sometimes an adjective chains but it will end relative fast because we don't it going recursive like the NP problem had. 
+
+# PropN category for Proper Nouns
+1 PropN Sally
+
+# CC for Conjunction
+1 CC and
+
+# Vocabulary.  Your program can see that "ate" is a terminal
+# symbol because there exists no rule for rewriting it.
+# Any symbol that can rewrite as a terminal (or a string of 
+# terminals, like "chief of staff") is called a "preterminal."  Notice 
+# that a preterminal is a special kind of nonterminal.
+
+# A.1 Q4: The more common verbs get's higher weights to make it look more like real English. 
+1 Verb Verb CC Verb
+3	Verb	ate
+3	Verb	wanted
+2	Verb	kissed
+2	Verb	understood
+1	Verb	pickled
+# A.1 Q4: "the" is the most frequnecy word in English, "a" is very common and "every" is rarer than them. 
+5	Det	the
+3	Det	a
+1	Det	every
+
+1	Noun	president
+1	Noun	sandwich
+1	Noun	pickle
+1	Noun	chief of staff
+1	Noun	floor
+# A.1 Q4: Fine is the most common here in my opioion so it get's the highest weight. 
+# Pickled is both a Verb and an Adj so we lower it's score to apear less times like it's real distribution. 
+3	Adj	fine
+2	Adj	delicious
+2	Adj	perplexed
+1	Adj	pickled
+
+1	Prep	with
+1	Prep	on
+1	Prep	under
+1	Prep	in
