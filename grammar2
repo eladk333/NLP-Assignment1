@@ -35,7 +35,8 @@
 #    Adj = adjective
 
 1	S	NP VP
-1	VP	Verb NP
+1	VP	V1 NP
+1   VP  V0
 4	NP	Det Noun 
 # A.1 Q3: The other rule NP -> NP PP creates two new NP. Because before both rules were equal wegihts we got very long sentences because of the recursive call. Now we raied NP -> Det Noun to 4 so the recursive expantions ends faster. 
 1	NP	NP PP
@@ -58,12 +59,17 @@
 # that a preterminal is a special kind of nonterminal.
 
 # A.1 Q4: The more common verbs get's higher weights to make it look more like real English. 
-1 Verb Verb CC Verb
-3	Verb	ate
-3	Verb	wanted
-2	Verb	kissed
-2	Verb	understood
-1	Verb	pickled
+1   V1  V1 CC V1
+3	V1	ate
+3	V1	wanted
+2	V1	kissed
+2	V1	understood
+1	V1	pickled
+
+# V0s
+
+1   V0  sighed
+
 # A.1 Q4: "the" is the most frequnecy word in English, "a" is very common and "every" is rarer than them. 
 5	Det	the
 3	Det	a
