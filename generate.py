@@ -27,14 +27,20 @@ class PCFG(object):
 
     def is_terminal(self, symbol): return symbol not in self._rules
 
-    def gen(self, symbol):
+    def gen(self, symbol, tree=False):
+        """
+        Expands symbol into a random string of terminals. With tree=True,
+        every nonterminal's expansion is wrapped as "(SYMBOL children...)",
+        giving the bracketed derivation tree instead of the plain sentence.
+        """
         if self.is_terminal(symbol): return symbol
         else:
             expansion = self.random_expansion(symbol)
-            return " ".join(self.gen(s) for s in expansion)
+            children = " ".join(self.gen(s, tree) for s in expansion)
+            return "(%s %s)" % (symbol, children) if tree else children
 
-    def random_sent(self):
-        return self.gen("ROOT")
+    def random_sent(self, tree=False):
+        return self.gen("ROOT", tree)
 
     def random_expansion(self, symbol):
         """
@@ -54,8 +60,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Generate random sentences from a PCFG.")
     parser.add_argument("grammar", help="path to the grammar file")
     parser.add_argument("-n", type=int, default=1, help="number of sentences to generate (default: 1)")
+    parser.add_argument("-t", action="store_true", help="print the derivation tree of each sentence")
     args = parser.parse_args()
 
     pcfg = PCFG.from_file(args.grammar)
     for _ in range(args.n):
-        print(pcfg.random_sent())
+        print(pcfg.random_sent(tree=args.t))
