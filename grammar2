@@ -34,20 +34,38 @@
 #    Prep = preposition
 #    Adj = adjective
 
-1	S	NP VP
+# Weight 4 so that not half of the sentences start with "it perplexed ..." (that rule contains another S, so sentences got very long).
+4	S	NP VP
 1	VP	V1 NP
 1   VP  V0
+# A.2 sentence 7: a PP can modify a verb phrase, like "in my pajamas" in the lecture.
+1   VP VP PP
+# A.2 sentence 8: copula "is" + adjective phrase.
+1   VP is ADJP
+# A.2 sentence 9: auxiliary "is" + -ing verb + object. VING is separate from V1, so "*Sally is ate" is impossible.
+1   VP is VING NP
+1   VING eating
+# A.2 sentence 10: copula "is" + noun phrase.
+1   VP is NP
+
 4	NP	Det Noun 
 # A.1 Q3: The other rule NP -> NP PP creates two new NP. Because before both rules were equal wegihts we got very long sentences because of the recursive call. Now we raied NP -> Det Noun to 4 so the recursive expantions ends faster. 
+# A.2 sentence 6: ADJP -> Adj keeps the old sentences; ADJP -> very ADJP is recursive so "very" can repeat.
+2	ADJP	Adj
+1	ADJP	very ADJP
 1	NP	NP PP
+# A.2 sentence 1: a proper noun is already a full NP (so no "*the Sally").
 1   NP PropN
+# A.2 sentence 2: coordination of noun phrases.
 1   NP NP CC NP
 1	PP	Prep NP
-3	Noun	Adj Noun
+# A.2 sentence 6: changed from Noun -> Adj Noun so the adjective can be modified by "very".
+3	Noun	ADJP Noun
 # A.1 Q3: Now this Noun rule can compete with the other 5 Noun rules so we can get sometimes an adjective chains but it will end relative fast because we don't it going recursive like the NP problem had. 
 
 # PropN category for Proper Nouns
 1 PropN Sally
+1 PropN sally     # sentence 10 writes the name in lowercase
 
 # CC for Conjunction
 1   CC and
@@ -59,17 +77,19 @@
 # that a preterminal is a special kind of nonterminal.
 
 # A.1 Q4: The more common verbs get's higher weights to make it look more like real English. 
+# A.2 sentence 2: coordination of transitive verbs only ("wanted and ate"), so the shared object stays grammatical.
 1   V1  V1 CC V1
 3	V1	ate
 3	V1	wanted
 2	V1	kissed
 2	V1	understood
 1	V1	pickled
-1   V1 thought
 
-# V0s
+
+# A.2 sentences 3 and 7: intransitive verbs, which take no object.
 
 1   V0  sighed
+1   V0 worked
 
 # A.1 Q4: "the" is the most frequnecy word in English, "a" is very common and "every" is rarer than them. 
 5	Det	the
@@ -81,6 +101,7 @@
 1	Expl	it
 1	VX	perplexed
 
+# A.2 sentence 4: verbs that take a clause ("thought that S"). SBAR = "that" + a full sentence.
 1   VP VS SBAR
 
 1   SBAR Comp S
@@ -92,12 +113,15 @@
 1	Noun	pickle
 1	Noun	chief of staff
 1	Noun	floor
+1   Noun proposal
+1   Noun desk
 # A.1 Q4: Fine is the most common here in my opioion so it get's the highest weight. 
 # Pickled is both a Verb and an Adj so we lower it's score to apear less times like it's real distribution. 
 3	Adj	fine
 2	Adj	delicious
 2	Adj	perplexed
 1	Adj	pickled
+1   Adj lazy
 
 1	Prep	with
 1	Prep	on
