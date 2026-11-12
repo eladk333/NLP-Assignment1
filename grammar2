@@ -40,8 +40,8 @@
 4	NP	Det Noun 
 # A.1 Q3: The other rule NP -> NP PP creates two new NP. Because before both rules were equal wegihts we got very long sentences because of the recursive call. Now we raied NP -> Det Noun to 4 so the recursive expantions ends faster. 
 1	NP	NP PP
-1 NP PropN
-1 NP NP CC NP
+1   NP PropN
+1   NP NP CC NP
 1	PP	Prep NP
 3	Noun	Adj Noun
 # A.1 Q3: Now this Noun rule can compete with the other 5 Noun rules so we can get sometimes an adjective chains but it will end relative fast because we don't it going recursive like the NP problem had. 
@@ -50,7 +50,7 @@
 1 PropN Sally
 
 # CC for Conjunction
-1 CC and
+1   CC and
 
 # Vocabulary.  Your program can see that "ate" is a terminal
 # symbol because there exists no rule for rewriting it.
@@ -65,6 +65,7 @@
 2	V1	kissed
 2	V1	understood
 1	V1	pickled
+1   V1 thought
 
 # V0s
 
@@ -74,6 +75,17 @@
 5	Det	the
 3	Det	a
 1	Det	every
+
+# A.2 sentence 5.
+1	S	Expl VX NP SBAR
+1	Expl	it
+1	VX	perplexed
+
+1   VP VS SBAR
+
+1   SBAR Comp S
+1   Comp that
+1   VS thought
 
 1	Noun	president
 1	Noun	sandwich
