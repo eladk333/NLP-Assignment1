@@ -1,0 +1,73 @@
+tokens: 85181718, first half: 42590859
+types in full file:  868970
+types in first half: 582731
+types added in second half: 286239
+
+new types appearing more than 2 times in second half: 38059
+  Quenya	185
+  Omak	177
+  Coatbridge	167
+  WinFS	161
+  Vithoba	156
+  Southcote	149
+  Carrouges	144
+  D'Oliveira	138
+  Heikkinen	138
+  WMATA	135
+  ... near the threshold:
+  Maxximus	3
+  Porthzennor	3
+  Balgley	3
+  Spafford's	3
+  Rēsā	3
+  Fletton	3
+  Rithala	3
+  ISBT	3
+  Mujesar	3
+  D3Publisher	3
+
+new types appearing more than 5 times in second half: 10999
+  Quenya	185
+  Omak	177
+  Coatbridge	167
+  WinFS	161
+  Vithoba	156
+  Southcote	149
+  Carrouges	144
+  D'Oliveira	138
+  Heikkinen	138
+  WMATA	135
+  ... near the threshold:
+  nasotracheal	6
+  laryngoscopist	6
+  Bika	6
+  Tovoli	6
+  Berti's	6
+  Taboada	6
+  Dmc1	6
+  Haditha's	6
+  Lezissy	6
+  Inderlok	6
+
+new types appearing more than 10 times in second half: 3819
+  Quenya	185
+  Omak	177
+  Coatbridge	167
+  WinFS	161
+  Vithoba	156
+  Southcote	149
+  Carrouges	144
+  D'Oliveira	138
+  Heikkinen	138
+  WMATA	135
+  ... near the threshold:
+  AMSP	11
+  Uitvoerend	11
+  Strathlachlan	11
+  Erielhonan	11
+  Zibold	11
+  Hartness	11
+  Kenema	11
+  LaVey's	11
+  Hauck	11
+  Braille's	11

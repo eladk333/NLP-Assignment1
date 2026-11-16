@@ -1,0 +1,73 @@
+tokens: 63567370, first half: 31783685
+types in full file:  1644996
+types in first half: 1031027
+types added in second half: 613969
+
+new types appearing more than 2 times in second half: 53832
+  Heteropoda	212
+  מדיקר	182
+  פאראלימפיות	161
+  ג'ינדאל	160
+  ט'פול	142
+  כדוג'ה	121
+  גניאל	109
+  ב-"מסע	106
+  אהרנפרייז	105
+  היאמטו	87
+  ... near the threshold:
+  הקסטיליה	3
+  Birkeland–Eyde	3
+  הפילופוניס	3
+  הפילופונסים	3
+  ותיראמיניס	3
+  אוטומציית	3
+  מורוקקו	3
+  ובצ'אני	3
+  וסלובו	3
+  ה'מושב	3
+
+new types appearing more than 5 times in second half: 12252
+  Heteropoda	212
+  מדיקר	182
+  פאראלימפיות	161
+  ג'ינדאל	160
+  ט'פול	142
+  כדוג'ה	121
+  גניאל	109
+  ב-"מסע	106
+  אהרנפרייז	105
+  היאמטו	87
+  ... near the threshold:
+  רישאפור	6
+  וייסבירגר	6
+  גורבונוס	6
+  ה-ERDF	6
+  דמוזי	6
+  טאכסילס	6
+  דה-סנט-פונד	6
+  ל-Birthday	6
+  ראש-פתן	6
+  או"ס	6
+
+new types appearing more than 10 times in second half: 3446
+  Heteropoda	212
+  מדיקר	182
+  פאראלימפיות	161
+  ג'ינדאל	160
+  ט'פול	142
+  כדוג'ה	121
+  גניאל	109
+  ב-"מסע	106
+  אהרנפרייז	105
+  היאמטו	87
+  ... near the threshold:
+  בלדימן	11
+  קוסאק	11
+  eNO	11
+  אלדוון	11
+  אדינסל	11
+  בסוראפניב	11
+  ב-UTR	11
+  ויארט	11
+  קאסמירו	11
+  הקלאפר	11

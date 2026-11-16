@@ -1,0 +1,8 @@
+== english
+100	there	60498	(types with same count: 1)
+1000	Texas	9274	(types with same count: 2)
+10000	Broadcast	727	(types with same count: 8)
+== hebrew
+100	אלה	36224	(types with same count: 1)
+1000	דוגמה	6965	(types with same count: 1)
+10000	היתרון	865	(types with same count: 8)
