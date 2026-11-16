@@ -1,33 +1,11 @@
-"""
-Byte-Pair Encoding (BPE) vocabulary training, following Sennrich et al. 2016
-(https://arxiv.org/pdf/1508.07909) and the assignment's description.
-
-The text is first split on whitespace into "classic tokens" (runs of
-whitespace collapse to nothing, as in str.split()). Each classic token is
-represented as a word made of its characters plus a trailing end-of-word
-symbol EOW ("§"). Since EOW is always the last symbol of a word, it can
-only ever be merged with the symbol before it, never with a symbol after it
-- which is exactly the constraint the assignment asks for ("don't allow
-merging a whitespace with items after it, only with items before it").
-
-Training works on word-TYPES weighted by their frequency (not on every
-occurrence in the text), and keeps an index from each adjacent pair to the
-set of word-types containing it, so that merging the current best pair only
-touches the (typically small) set of word-types affected by it, instead of
-rescanning the whole corpus on every merge.
-
-Usage: python bpe.py <filename> <N> [output_file]
-"""
 import heapq
-import sys
-import time
 from collections import Counter, defaultdict
 
-EOW = "§"  # "end of word" marker, standing in for whitespace
+EOW = "§"
+LITERAL_EOW = "[§]"
 
 
-def _word_counts(filename):
-    """Count classic-token (whitespace-split) frequencies in the file."""
+def count_words(filename):
     counts = Counter()
     with open(filename, encoding="utf-8") as f:
         for line in f:
@@ -35,117 +13,97 @@ def _word_counts(filename):
     return counts
 
 
-def _init_words(word_counts):
-    """Turn {word: freq} into {symbols-tuple: freq}, and the initial vocab."""
-    vocab = set()
-    words = {}
-    for word, freq in word_counts.items():
-        symbols = tuple(word) + (EOW,)
-        vocab.update(symbols)
-        words[symbols] = words.get(symbols, 0) + freq
-    return vocab, words
-
-
-def _count_pairs(words):
-    """Initial adjacent-pair counts, and which word-types contain each pair."""
-    pair_freq = Counter()
-    pair_to_words = defaultdict(set)
-    for word, freq in words.items():
-        for pair in zip(word, word[1:]):
-            pair_freq[pair] += freq
-            pair_to_words[pair].add(word)
-    return pair_freq, pair_to_words
-
-
-def _apply_merge(word, a, b, merged):
-    """Return `word` with every non-overlapping (a, b) -> merged applied."""
-    new_word = []
+def merge_word(word, a, b, c):
+    out = []
     i = 0
-    n = len(word)
-    while i < n:
-        if i + 1 < n and word[i] == a and word[i + 1] == b:
-            new_word.append(merged)
+    while i < len(word):
+        if i < len(word) - 1 and word[i] == a and word[i + 1] == b:
+            out.append(c)
             i += 2
         else:
-            new_word.append(word[i])
+            out.append(word[i])
             i += 1
-    return tuple(new_word)
+    return out
 
 
 def train_bpe(filename, N):
-    """Train a BPE vocabulary of size N on the text in `filename`.
+    word_counts = count_words(filename)
 
-    Returns a list of N strings: the initial per-character vocabulary plus
-    the merges learned, in the order they were created.
-    """
-    word_counts = _word_counts(filename)
-    vocab, words = _init_words(word_counts)
-    vocab_list = sorted(vocab)
+    # symbol 0 is the end of word marker, so a literal § in the text is a normal character
+    chars = sorted({ch for w in word_counts for ch in w})
+    vocab = [EOW] + [LITERAL_EOW if ch == EOW else ch for ch in chars]
+    char_id = {ch: i + 1 for i, ch in enumerate(chars)}
 
-    if len(vocab_list) >= N:
-        return vocab_list[:N]
+    words = [[char_id[ch] for ch in w] + [0] for w in word_counts]
+    freqs = list(word_counts.values())
 
-    pair_freq, pair_to_words = _count_pairs(words)
+    pair_counts = defaultdict(int)
+    where = defaultdict(set)
+    for i, w in enumerate(words):
+        for pair in zip(w, w[1:]):
+            pair_counts[pair] += freqs[i]
+            where[pair].add(i)
 
-    # Max-heap (via negated counts) of candidate pairs, with lazy deletion:
-    # entries may be stale, we check them against pair_freq when popped.
-    heap = [(-freq, pair) for pair, freq in pair_freq.items()]
+    heap = [(-c, a, b) for (a, b), c in pair_counts.items()]
     heapq.heapify(heap)
 
-    while len(vocab_list) < N:
-        # Find the current best valid pair.
-        pair = None
-        while heap:
-            neg_freq, candidate = heapq.heappop(heap)
-            if pair_freq.get(candidate) == -neg_freq and -neg_freq > 0:
-                pair = candidate
-                break
-        if pair is None:
-            break  # no more pairs to merge
+    while len(vocab) < N and heap:
+        neg, a, b = heapq.heappop(heap)
+        if pair_counts.get((a, b), 0) != -neg:
+            continue
 
-        a, b = pair
-        merged = a + b
-        vocab_list.append(merged)
-
-        affected = pair_to_words.pop(pair, ())
-        for word in list(affected):
-            freq = words.pop(word, None)
-            if freq is None:
+        c = len(vocab)
+        vocab.append(vocab[a] + vocab[b])
+        changed = set()
+        for i in where.pop((a, b)):
+            old = words[i]
+            new = merge_word(old, a, b, c)
+            if len(new) == len(old):
                 continue
+            old_pairs = list(zip(old, old[1:]))
+            new_pairs = list(zip(new, new[1:]))
+            for pair in old_pairs:
+                pair_counts[pair] -= freqs[i]
+                changed.add(pair)
+            for pair in new_pairs:
+                pair_counts[pair] += freqs[i]
+                changed.add(pair)
+                where[pair].add(i)
+            for pair in set(old_pairs) - set(new_pairs):
+                if pair in where:
+                    where[pair].discard(i)
+            words[i] = new
 
-            # Remove this word's contribution to all its pairs.
-            for p in zip(word, word[1:]):
-                pair_freq[p] -= freq
-                if pair_freq[p] <= 0:
-                    del pair_freq[p]
-                pair_to_words[p].discard(word)
+        del pair_counts[(a, b)]
+        changed.discard((a, b))
+        for pair in changed:
+            if pair_counts[pair] > 0:
+                heapq.heappush(heap, (-pair_counts[pair], pair[0], pair[1]))
+            else:
+                del pair_counts[pair]
+                where.pop(pair, None)
 
-            new_word = _apply_merge(word, a, b, merged)
-            words[new_word] = words.get(new_word, 0) + freq
+    return vocab
 
-            # Add the new word's contribution to all its pairs.
-            for p in zip(new_word, new_word[1:]):
-                pair_freq[p] += freq
-                pair_to_words[p].add(new_word)
-                heapq.heappush(heap, (-pair_freq[p], p))
 
-    return vocab_list
+def tokenize(text, vocab):
+    items = set(vocab)
+    max_len = max(len(v) for v in vocab)
+    tokens = []
+    for word in text.split():
+        s = word.replace(EOW, LITERAL_EOW) + EOW
+        i = 0
+        while i < len(s):
+            for j in range(min(len(s), i + max_len), i, -1):
+                if s[i:j] in items:
+                    break
+            tokens.append(s[i:j])
+            i = j
+    return tokens
 
 
 if __name__ == "__main__":
-    sys.stdout.reconfigure(encoding="utf-8")  # so Hebrew prints on Windows
-    path = sys.argv[1]
-    n = int(sys.argv[2])
-    out_path = sys.argv[3] if len(sys.argv) > 3 else None
-
-    t0 = time.time()
-    vocab = train_bpe(path, n)
-    print(f"Trained {len(vocab)} vocab items in {time.time() - t0:.1f}s", flush=True)
-
-    if out_path:
-        with open(out_path, "w", encoding="utf-8") as f:
-            for v in vocab:
-                f.write(v + "\n")
-    else:
-        for v in vocab[:50]:
-            print(repr(v))
+    for lang in ["english", "hebrew"]:
+        vocab = train_bpe(f"data/{lang}.txt", 30000)
+        with open(f"{lang}.bpe.txt", "w", encoding="utf-8") as f:
+            f.write("\n".join(vocab) + "\n")
