@@ -173,6 +173,9 @@
 # Coordination of base-form verbs too, mirroring V1 -> V1 CC V1
 # ("did Sally want and eat a sandwich ?").
 1	V1B	V1B CC V1B
+# Coordination of whole base-form verb phrases, mirroring VP -> VP CC VP
+# ("did Sally eat a sandwich and sigh ?").
+1	VPB	VPB CC VPB
 
 # "is" sentences (A.2 sentences 8, 9, 10): "is" itself moves to the front.
 1	Q	is NP ADJP
