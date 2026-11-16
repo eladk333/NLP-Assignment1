@@ -36,10 +36,17 @@
 
 # Weight 4 so that not half of the sentences start with "it perplexed ..." (that rule contains another S, so sentences got very long).
 4	S	NP VP
+# Coordination of whole clauses, even with different subjects
+# ("the president sighed and Sally ate a sandwich"). Low weight, same
+# reasoning as A.1 Q1: keep the branching factor well under 1.
+1	S	S CC S
 1	VP	V1 NP
 1   VP  V0
 # A.2 sentence 7: a PP can modify a verb phrase, like "in my pajamas" in the lecture.
 1   VP VP PP
+# Coordination of whole verb phrases, even across different verb frames
+# ("Sally ate a sandwich or sighed"), mirroring NP -> NP CC NP.
+1   VP VP CC VP
 # A.2 sentence 8: copula "is" + adjective phrase.
 1   VP is ADJP
 # A.2 sentence 9: auxiliary "is" + -ing verb + object. VING is separate from V1, so "*Sally is ate" is impossible.
@@ -69,6 +76,7 @@
 
 # CC for Conjunction
 1   CC and
+1   CC or
 
 # Vocabulary.  Your program can see that "ate" is a terminal
 # symbol because there exists no rule for rewriting it.
