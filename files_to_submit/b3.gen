@@ -1,0 +1,5 @@
+(ROOT is it true that (S (NP (Det a) (Noun (ADJP (Adj lazy)) (Noun desk))) (VP (V0 worked))) ?)
+(ROOT (S (NP (NP (NP (Det a) (Noun president)) (CC and) (NP (Det the) (Noun sandwich))) (CC and) (NP (Det the) (Noun floor))) (VP (V1 ate) (NP (Det a) (Noun (ADJP (Adj lazy)) (Noun president))))) .)
+(ROOT is it true that (S (NP (Det the) (Noun floor)) (VP is (ADJP (Adj delicious)))) ?)
+(ROOT is it true that (S (NP (NP (NP (Det every) (Noun desk)) (CC and) (NP (NP (Det a) (Noun chief of staff)) (PP (Prep on) (NP (PropN Sally))))) (CC and) (NP (NP (Det the) (Noun pickle)) (PP (Prep under) (NP (PropN sally))))) (VP is (VING eating) (NP (Det the) (Noun pickle)))) ?)
+(ROOT (S (NP (Det the) (Noun desk)) (VP (VP is (ADJP (Adj fine))) (PP (Prep in) (NP (PropN Sally))))) .)
