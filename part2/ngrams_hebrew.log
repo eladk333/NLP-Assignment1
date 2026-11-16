@@ -1,0 +1,12 @@
+  repeat exists at n=2
+  repeat exists at n=4
+  repeat exists at n=8
+  repeat exists at n=16
+  repeat exists at n=32
+  repeat exists at n=64
+  searching n in [96, 128)
+  searching n in [112, 128)
+  searching n in [120, 128)
+  searching n in [120, 124)
+  searching n in [122, 124)
+  searching n in [122, 123)

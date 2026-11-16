@@ -1,0 +1,31 @@
+tokens: 85181718
+
+top 10 5-grams:
+  1	3614	at the end of the
+  2	2266	in the United States on
+  3	1777	for the first time in
+  4	1695	At the end of the
+  5	1662	in the United States and
+  6	1459	the end of the war
+  7	1345	by the end of the
+  8	1322	on the Billboard Hot 100
+  9	1278	as a result of the
+ 10	1217	at the time of the
+
+top 10 10-grams:
+  1	316	aired on the Fox network in the United States on
+  2	250	originally aired on the Fox network in the United States
+  3	221	a speed of 10 knots 19 km h 12 mph
+  4	216	at a speed of 10 knots 19 km h 12
+  5	207	It originally aired on the Fox network in the United
+  6	206	I Can't Believe It's a Bigger and Better Updated Unofficial
+  7	206	Believe It's a Bigger and Better Updated Unofficial Simpsons Guide
+  8	206	mi at a speed of 10 knots 19 km h
+  9	206	Can't Believe It's a Bigger and Better Updated Unofficial Simpsons
+ 10	199	A Critical Guide to The X-Files Millennium The Lone Gunmen
+  (4 10-grams share the count at place 10)
+
+longest n-gram with frequency > 1: n=16739, 1 such n-gram(s)
+  frequency 2, at token positions [34928651, 84997031]:
+  = Chevrolet Volt = The Chevrolet Volt is a plug-in hybrid manufactured by General Motors also marketed in rebadged variants as the Holden Volt in Australia and New Zealand and with a different fascia as the Vauxhall Ampera in the United Kingdom and as the Opel Ampera in the remainder of Europe Sales of the 2011 Volt began in the ...
+wrote full text to ngrams_english_longest.txt

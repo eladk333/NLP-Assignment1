@@ -1,0 +1,32 @@
+tokens: 85181718
+n-grams stay within a line
+
+top 10 5-grams:
+  1	3614	at the end of the
+  2	2266	in the United States on
+  3	1777	for the first time in
+  4	1695	At the end of the
+  5	1662	in the United States and
+  6	1459	the end of the war
+  7	1345	by the end of the
+  8	1322	on the Billboard Hot 100
+  9	1278	as a result of the
+ 10	1217	at the time of the
+
+top 10 10-grams:
+  1	316	aired on the Fox network in the United States on
+  2	250	originally aired on the Fox network in the United States
+  3	221	a speed of 10 knots 19 km h 12 mph
+  4	216	at a speed of 10 knots 19 km h 12
+  5	207	It originally aired on the Fox network in the United
+  6	206	Believe It's a Bigger and Better Updated Unofficial Simpsons Guide
+  7	206	Can't Believe It's a Bigger and Better Updated Unofficial Simpsons
+  8	206	I Can't Believe It's a Bigger and Better Updated Unofficial
+  9	206	mi at a speed of 10 knots 19 km h
+ 10	199	A Critical Guide to The X-Files Millennium The Lone Gunmen
+  (4 10-grams share the count at place 10)
+
+longest n-gram with frequency > 1: n=467, 1 such n-gram(s)
+  frequency 2, at token positions [78313313, 84520850]:
+  Crawford's wages caused the OCA some financial difficulty and were the cause of extended negotiations in 1915 Part of the settlement involved Crawford receiving a lower salary in return for freedom to offer his services to other clubs on a freelance basis As a consequence he represented different teams throughout the season in local cricket He was also paid to ...
+wrote full text to ngrams_english_longest.txt

@@ -1,0 +1,32 @@
+tokens: 63567370
+n-grams stay within a line
+
+top 10 5-grams:
+  1	734	ערך את הופעת הבכורה שלו
+  2	481	עם פרוץ מלחמת העולם השנייה
+  3	474	המשפט העליון של ארצות הברית
+  4	467	מטר מעורב אישי בתוצאה של
+  5	432	שנות ה-90 של המאה ה-20
+  6	391	עם פרוץ מלחמת העולם הראשונה
+  7	389	העשור הראשון של המאה ה-21
+  8	361	במשחה ל-200 מטר מעורב אישי
+  9	361	עד לסיום השנה נשארו עוד
+ 10	349	בית המשפט העליון של ארצות
+
+top 10 10-grams:
+  1	69	עבר מסלול הכשרה כלוחם קורס מ"כים חי"ר וקורס קציני חי"ר
+  2	56	על פי הלוח העברי הקבוע פרשת בר המצווה של ילד
+  3	56	פי הלוח העברי הקבוע פרשת בר המצווה של ילד שנולד
+  4	53	ברשימת מאה נבלי-העל הגדולים של כל הזמנים לפי אתר IGN
+  5	53	על ידי פלה לאחד מ-125 שחקני הכדורגל החיים הטובים בעולם
+  6	46	= left:70 right:40 top:20 bottom:20 TimeAxis = orientation:vertical AlignBars =
+  7	46	PlotArea = left:70 right:40 top:20 bottom:20 TimeAxis = orientation:vertical AlignBars
+  8	46	left:70 right:40 top:20 bottom:20 TimeAxis = orientation:vertical AlignBars = justify
+  9	46	right:40 top:20 bottom:20 TimeAxis = orientation:vertical AlignBars = justify Colors
+ 10	46	top:20 bottom:20 TimeAxis = orientation:vertical AlignBars = justify Colors =
+  (5 10-grams share the count at place 10)
+
+longest n-gram with frequency > 1: n=122, 1 such n-gram(s)
+  frequency 2, at token positions [54542231, 55278394]:
+  חוקרים טענו כי לא קיימת בה התייחסות להתפתחות המוסרית של ילדים בגיל מוקדם יותר מגיל הגן היא אתנוצנטרית ולא נותנת הסברים לגבי התפתחות מוסרית בקרב אוכלוסיות שאינן מערביות למשל תרבויות מסורתיות רבות הן שיתופיות יותר מהתרבות המערבית ורווחת הקבוצה נתפסת בהן כערך עליון אך לפי שיטת קולברג שיקול דעת כזה נוטה להיות מדורג בשלב השלישי או הרביעי בלבד התאוריה מתארת ...
+wrote full text to ngrams_hebrew_longest.txt

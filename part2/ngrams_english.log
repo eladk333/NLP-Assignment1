@@ -1,0 +1,16 @@
+  repeat exists at n=2
+  repeat exists at n=4
+  repeat exists at n=8
+  repeat exists at n=16
+  repeat exists at n=32
+  repeat exists at n=64
+  repeat exists at n=128
+  repeat exists at n=256
+  searching n in [384, 512)
+  searching n in [448, 512)
+  searching n in [448, 480)
+  searching n in [464, 480)
+  searching n in [464, 472)
+  searching n in [464, 468)
+  searching n in [466, 468)
+  searching n in [467, 468)
